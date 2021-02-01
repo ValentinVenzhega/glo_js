@@ -4,12 +4,12 @@ const money = +prompt('Ваш месячный доход?'),
       expenses1 = prompt('Введите обязательную статью расходов?'),
       amount1 = +prompt('Во сколько это обойдется?'),
       expenses2 = prompt('Введите обязательную статью расходов?'),
-      amount2 = +prompt('Во сколько это обойдется?');
+      amount2 = +prompt('Во сколько это обойдется?'),
+      addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую'),
+      budgetDay = budgetMonth / 30,
+      period = mission / budgetMonth,
+      deposit = confirm('Есть ли у вас депозит в банке?');
 
-let addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую'),
-   period = 12,
-   deposit = confirm('Есть ли у вас депозит в банке?'),
-   budgetDay;
 
 
 console.log(typeof money);
@@ -34,10 +34,10 @@ const budgetMonth = money - (amount1 + amount2);
 console.log(`Бюджет на месяц: ${budgetMonth}`);
 
 // период достижения цели
-console.log(`Цель будет достигнута за ${Math.ceil(period = mission / budgetMonth)} месяцев(-а)`);
+console.log(`Цель будет достигнута за ${Math.ceil(period)} месяцев(-а)`);
 
 // Бюджет на день
-console.log( `Бюджет на день: ${Math.floor(budgetDay = budgetMonth / 30)}`);
+console.log( `Бюджет на день: ${Math.floor(budgetDay)}`);
 
 // Определяем уровент дохода
 if (budgetDay > 1200) {
