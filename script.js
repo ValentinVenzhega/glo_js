@@ -15,8 +15,9 @@ const money = +prompt('Ваш месячный доход?', '50000'),
    getExpensesMonth = function() {
       return amount1 + amount2;
    },
+   amountSum = getExpensesMonth(),
    getAccumulatedMonth = function() {
-      return  money - (amount1 + amount2);
+      return  money - amountSum;
       
    },
    accumulatedMonth = getAccumulatedMonth(),
