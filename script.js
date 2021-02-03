@@ -13,6 +13,7 @@ let expenses = [],
 
       while (!isNumber(money));
    };
+   
    start();
 
 const
