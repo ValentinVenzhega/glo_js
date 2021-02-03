@@ -26,17 +26,18 @@ const
    },
    getExpensesMonth = function() {
       let sum = 0;
-
+      let temp = 0;
       for (let i = 0; i < 2; i++) {
          expenses[i] = prompt('Введите обязательную статью расходов?');
          do {
-            sum += +prompt('Во сколько это обойдется?');
+            temp = prompt('Во сколько это обойдется?');
          } 
    
-         while (!isNumber(sum));
+         while (!isNumber(temp));
+         sum += +temp;
       }
       console.log(expenses);
-      return sum;
+      return sum ;
    },
    expensesAmount = getExpensesMonth(),
    getAccumulatedMonth = function() {
@@ -45,10 +46,10 @@ const
    accumulatedMonth = getAccumulatedMonth(),
    getTargetMonth = function() {
       let a = Math.ceil(mission / accumulatedMonth);
-      if (a > 0) {
-         return (`Цель будет достигнута за ${a} месяцев(-а)`);
-      } else {
+      if (a < 0 || a === Infinity) {
          return ('Цель не будет достигнута');
+      } else {
+         return (`Цель будет достигнута за ${a} месяцев(-а)`);
       }
    },
    budgetDay = function() {
@@ -78,17 +79,6 @@ console.log(addExpenses);
 console.log(getTargetMonth());
 console.log( `Бюджет на день: ${budgetDay()}`);
 console.log(getStatusIncome());
-
-
-
-
-
-
-
-
-
-
-
 
 
 
