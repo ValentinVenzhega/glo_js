@@ -8,7 +8,7 @@ let expenses = [],
    money,
    start = function() {
       do {
-         money = prompt('Ваш месячный доход?');
+         money = +prompt('Ваш месячный доход?');
       } 
 
       while (!isNumber(money));
@@ -36,7 +36,6 @@ const
          while (!isNumber(temp));
          sum += +temp;
       }
-      console.log(expenses);
       return sum ;
    },
    expensesAmount = getExpensesMonth(),
