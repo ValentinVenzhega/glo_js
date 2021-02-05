@@ -75,12 +75,10 @@ appData.asking();
 appData.getExpensesMonth();
 appData.getBudget();
 
-
 console.log(appData.budget);
 console.log(appData.getTargetMonth());
 console.log(appData.getStatusIncome());
 
-console.log(appData);
 for (let key in appData) {
    console.log(`Наша программа включает в себя данные: ${key}: ${appData[key]}`);
 }
