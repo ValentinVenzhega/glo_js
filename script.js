@@ -24,8 +24,8 @@ let appData = {
    budgetMonth: 0, // бюджет на месяц
    expensesMonth: 0, // расходы на месяц
    asking: function() {
-      let addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую', 'соль, вода');
-      appData.addExpenses = addExpenses.toLowerCase().split(', ');
+      let addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую', 'соль, вода').toLowerCase().split(', ');
+      appData.addExpenses = addExpenses;
       appData.deposit = confirm('Есть ли у вас депозит в банке?');
       for (let i = 0; i < 2; i++) {
          let key,
@@ -44,11 +44,8 @@ let appData = {
       }
    },
    getBudget: function() {
-      let budgetMonth = money - appData.expensesMonth;
-      appData.budgetMonth = budgetMonth;
-      let budgetDay = Math.floor(appData.budgetMonth / 30);
-      appData.budgetDay = budgetDay;
-
+      appData.budgetMonth = money - appData.expensesMonth;
+      appData.budgetDay = Math.floor(appData.budgetMonth / 30);
    }, 
    getTargetMonth: function() {
       let a = Math.ceil(appData.mission / appData.budgetMonth);
