@@ -1,7 +1,5 @@
 'use strict';
 
-
-
 let money,
    isNumber = function(n){
    return !isNaN(parseFloat(n)) && isFinite(n);
@@ -10,13 +8,10 @@ let money,
       do {
          money = +prompt('Ваш месячный доход?', '50000');
       } 
-
       while (!isNumber(money));
    };
-   
    start();
    
-
 let appData = {
    income: {},
    addIncome: [],
