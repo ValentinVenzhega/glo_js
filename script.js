@@ -42,12 +42,11 @@ let appData = {
          while (!isNumber(cashIncome));
          appData.income[itemIncome] = cashIncome;
       }
-      let addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую', 'соль, вода');
-      if (!addExpenses) {
-         alert('вы ничего не ввели');
-      } else {
-         appData.addExpenses = addExpenses.split(', ');
-      }
+      let addExpenses;
+      do {
+            addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую', 'соль, вода');
+      } while(addExpenses === null);
+      appData.addExpenses = addExpenses.split(', ');
       appData.deposit = confirm('Есть ли у вас депозит в банке?');
       for (let i = 0; i < 2; i++) {
          let key,
@@ -122,6 +121,7 @@ console.log(appData.budget);
 console.log(appData.getTargetMonth());
 console.log(appData.getStatusIncome());
 
+console.log(appData.addExpenses);
 console.log(appData.addExpenses.map(item =>  `${item[0].toUpperCase()}${item.slice(1)}`).join(', '));
 
 for (let key in appData) {
