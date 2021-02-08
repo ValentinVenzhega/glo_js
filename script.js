@@ -121,7 +121,6 @@ console.log(appData.budget);
 console.log(appData.getTargetMonth());
 console.log(appData.getStatusIncome());
 
-console.log(appData.addExpenses);
 console.log(appData.addExpenses.map(item =>  `${item[0].toUpperCase()}${item.slice(1)}`).join(', '));
 
 for (let key in appData) {
