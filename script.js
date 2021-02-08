@@ -42,6 +42,7 @@ let appData = {
          while (!isNumber(cashIncome));
          appData.income[itemIncome] = cashIncome;
       }
+      
 
       let addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую', 'соль, вода');
       appData.addExpenses = addExpenses;
@@ -119,7 +120,7 @@ console.log(appData.budget);
 console.log(appData.getTargetMonth());
 console.log(appData.getStatusIncome());
 
-console.log(appData.addExpenses.map(item =>  `${item[0].toUpperCase()}${item.slice(1)}`).join(', '));
+console.log(appData.addExpenses.split(', ').map(item =>  `${item[0].toUpperCase()}${item.slice(1)}`).join(', '));
 
 for (let key in appData) {
    console.log(`Наша программа включает в себя данные: ${key}: ${appData[key]}`);
