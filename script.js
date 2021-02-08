@@ -8,7 +8,7 @@ let money,
       do {
          money = +prompt('Ваш месячный доход?', '50000');
       } 
-      while (!isNumber(money));
+      while (!isNumber(money) ||  money === 0 ||  money === '');
    };
    start();
    
@@ -34,18 +34,18 @@ let appData = {
          do {
             itemIncome =  prompt('Какой у вас есть дополнительный заработок?', 'таксую');
          } 
-         while (isNumber(itemIncome));
+         while (isNumber(itemIncome) || itemIncome === null || itemIncome === '');
 
          do {
             cashIncome = +prompt('Сколько в месяц вы на этом зарабатываете?', '10000');
          } 
-         while (!isNumber(cashIncome));
+         while (!isNumber(cashIncome) || cashIncome === 0 || cashIncome === '');
          appData.income[itemIncome] = cashIncome;
       }
       let addExpenses;
       do {
             addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую', 'соль, вода');
-      } while(addExpenses === null);
+      } while(addExpenses === null || addExpenses === '');
       appData.addExpenses = addExpenses.split(', ');
       appData.deposit = confirm('Есть ли у вас депозит в банке?');
       for (let i = 0; i < 2; i++) {
@@ -55,12 +55,12 @@ let appData = {
          do {
             key = prompt('Введите обязательную статью расходов?');
          } 
-         while (isNumber(key));
+         while (isNumber(key) || key === null || key === '');
 
          do {
             temp = +prompt('Во сколько это обойдется?', '300');
          } 
-         while (!isNumber(temp));
+         while (!isNumber(temp) || temp === 0 || temp === '');
          appData.expenses[key] = temp;
       }
    },
@@ -97,12 +97,12 @@ let appData = {
          do {
             appData.procentDeposit = +prompt('Какой годовой процент?', '10');
          } 
-         while (!isNumber(appData.procentDeposit));
+         while (!isNumber(appData.procentDeposit) || appData.procentDeposit === 0 || appData.procentDeposit === '');
 
          do {
             appData.moneyDeposit = +prompt('Какая сумма заложена?', 10000);
          } 
-         while (!isNumber(appData.moneyDeposit));
+         while (!isNumber(appData.moneyDeposit) || appData.moneyDeposit === 0 || appData.moneyDeposit === '');
          
          
       }
