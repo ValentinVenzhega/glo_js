@@ -1,18 +1,18 @@
 'use strict';
 
-const startBtn = document.getElementById('start'),
-   plusBtnOne = document.getElementsByTagName('button')[0],
-   plusBtnTwo = document.getElementsByTagName('button')[1],
+const start = document.getElementById('start'),
+   incomeAdd = document.getElementsByTagName('button')[0],
+   expensesAdd = document.getElementsByTagName('button')[1],
    depositCheck = document.querySelector('#deposit-check'),
    additionalIncomeItem = document.querySelectorAll('.additional_income-item'),
-   budgetMonthValue = document.getElementsByClassName('budget_month-value'),
-   budgetDayValue = document.getElementsByClassName('budget_day-value'),
-   expensesMonthValue = document.getElementsByClassName('expenses_month-value'),
-   additionalIncomeValue = document.getElementsByClassName('additional_income-value'),
-   additionalExpensesValue = document.getElementsByClassName('additional_expenses-value'),
-   incomePeriodValue = document.getElementsByClassName('income_period-value'),
-   targetMonthValue = document.getElementsByClassName('target_month-value'),
-   salarAmount = document.querySelector('.salary-amount'),
+   budgetMonthValue = document.getElementsByClassName('budget_month-value')[0],
+   budgetDayValue = document.getElementsByClassName('budget_day-value')[0],
+   expensesMonthValue = document.getElementsByClassName('expenses_month-value')[0],
+   additionalIncomeValue = document.getElementsByClassName('additional_income-value')[0],
+   additionalExpensesValue = document.getElementsByClassName('additional_expenses-value')[0],
+   incomePeriodValue = document.getElementsByClassName('income_period-value')[0],
+   targetMonthValue = document.getElementsByClassName('target_month-value')[0],
+   salaryAmount = document.querySelector('.salary-amount'),
    incomeTitle = document.querySelector('.income-title'),
    incomeAmount = document.querySelector('.income-amount'),
    expensesTitle = document.querySelector('.expenses-title'),
@@ -21,12 +21,12 @@ const startBtn = document.getElementById('start'),
    depositAmount = document.querySelector('.deposit-amount'),
    depositPercent = document.querySelector('.deposit-percent'),
    targetAmount = document.querySelector('.target-amount'),
-   perioSelect = document.querySelector('.period-select');
+   periodSelect = document.querySelector('.period-select');
 
 
-   console.log(startBtn);
-   console.log(plusBtnOne);
-   console.log(plusBtnTwo);
+   console.log(start);
+   console.log(incomeAdd);
+   console.log(expensesAdd);
    console.log(depositCheck);
    console.log(additionalIncomeItem);
    console.log(budgetMonthValue);
@@ -36,7 +36,7 @@ const startBtn = document.getElementById('start'),
    console.log(additionalExpensesValue);
    console.log(incomePeriodValue);
    console.log(targetMonthValue);
-   console.log(salarAmount);
+   console.log(salaryAmount);
    console.log(incomeTitle);
    console.log(incomeAmount);
    console.log(expensesTitle);
@@ -45,7 +45,7 @@ const startBtn = document.getElementById('start'),
    console.log(depositAmount);
    console.log(depositPercent);
    console.log(targetAmount);
-   console.log(perioSelect);
+   console.log(periodSelect);
 
 
 
