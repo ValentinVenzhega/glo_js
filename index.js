@@ -201,7 +201,7 @@ function btnEnable() {
    start.innerHTML = 'Результат операции';
    start.disabled = false;
 }
-start.disabled = false;
+
 start.addEventListener('click', () => appData.start());
 expensesAdd.addEventListener('click', () => {
    appData.addExpensesBlock();
