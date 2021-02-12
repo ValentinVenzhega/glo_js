@@ -73,10 +73,10 @@ let appData = {
    },
    getSalaryAmount: function () {
       
-      // if (salaryAmount.value === '' ) {
-      //    alert('Ошибка, поле "Месячный доход" должно быть заполнено!');
-      //    return;
-      // }
+      if (salaryAmount.value === '' ) {
+         alert('Ошибка, поле "Месячный доход" должно быть заполнено!');
+         return;
+      }
       appData.budget = +salaryAmount.value;
    },
    addExpensesBlock: function() {
@@ -184,25 +184,22 @@ let appData = {
    getNumber() {
       this.value = this.value.replace(/[^\d|,|.]+/g, "");
    },
-   // getString() {
-   //    this.value = this.value.replace(/[^А-Яа-я]/,'');
-   // }
+   getString() {
+      this.value = this.value.replace(/[^А-Яа-я,._ ]/,'');
+   }
 };
 
+start.disabled = true;
+salaryAmount.addEventListener('input', function() {
+   if (salaryAmount.value !== '') {
+      start.disabled = false;
+      appData.start;
+   } else {
+      start.disabled = true;
+   }
+});
 
-// Ставим  disable у кнопки "Показать результат"
-function btnDisable() {
-   start.innerHTML = 'Кнопка заблокирована! Пока не будут введены новые значения.';
-   start.disabled = true;
-}
-
-// Убираем disable у кнопки "Показать результат"
-function btnEnable() {
-   start.innerHTML = 'Результат операции';
-   start.disabled = false;
-}
-
-start.addEventListener('click', () => appData.start());
+start.addEventListener('click', appData.start);
 expensesAdd.addEventListener('click', () => {
    appData.addExpensesBlock();
    expensesTitle.value = '';
@@ -218,12 +215,12 @@ salaryAmount.addEventListener('input', appData.getNumber);
 incomeAmount.addEventListener('input', appData.getNumber);
 expensesAmount.addEventListener('input', appData.getNumber);
 targetAmount.addEventListener('input', appData.getNumber);
-// incomeTitle.addEventListener('input', appData.getString);
-// expensesTitle.addEventListener('input', appData.getString);
-// additionalExpensesItem.addEventListener('input', appData.getString);
-// additionalIncomeItem.forEach(function(item) {
-//    item.addEventListener('input', appData.getString);
-// });
+incomeTitle.addEventListener('input', appData.getString);
+expensesTitle.addEventListener('input', appData.getString);
+additionalExpensesItem.addEventListener('input', appData.getString);
+additionalIncomeItem.forEach(function(item) {
+   item.addEventListener('input', appData.getString);
+});
 
 
 
