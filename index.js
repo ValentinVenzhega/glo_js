@@ -125,7 +125,7 @@ let appData = {
          item =item.trim();
          if (item !== '') {
             appData.addExpenses.push(item);
-            appData.addExpenses = appData.addExpenses.map(n => `${n[0].toUpperCase()}${n.slice(1)}`);
+            appData.addExpenses = appData.addExpenses.map(n => `${n[0].toUpperCase()}${n.substring(1).toLowerCase()}`);
          }
       });
       console.log(appData.addExpenses);
@@ -135,7 +135,7 @@ let appData = {
          let itemValue = item.value.trim();
          if (itemValue !== '') {
             appData.addIncome.push(itemValue);
-            appData.addIncome = appData.addIncome.map(n => `${n[0].toUpperCase()}${n.slice(1)}`);
+            appData.addIncome = appData.addIncome.map(n => `${n[0].toUpperCase()}${n.substring(1).toLowerCase()}`);
          }
       });
    },
@@ -226,4 +226,8 @@ let appData = {
 appData.getInint();
 start.addEventListener('click', appData.start);
 
+
+let arr = ['ябЛоКо', 'бАнАн', 'аПеЛьСиН'];
+console.log(arr);
+console.log(arr.map(n => `${n[0].toUpperCase()}${n.substring(1).toLowerCase()}`));
 
