@@ -24,8 +24,6 @@ const start = document.getElementById('start'),
    incomeAmount = document.querySelector('.income-amount'),
    expensesAmount = document.querySelector('.expenses-amount');
 
-   
-
 let money,
    expensesItems = document.querySelectorAll('.expenses-items'),
    incomeItems = document.querySelectorAll('.income-items'),
@@ -49,7 +47,6 @@ let appData = {
    budgetMonth: 0, // бюджет на месяц
    expensesMonth: 0, // расходы на месяц
    start: function () {
-      
       appData.getSalaryAmount();
       appData.getExpenses();
       appData.getExpensesMonth();
@@ -121,11 +118,9 @@ let appData = {
             appData.income[itemIncome] = +cashIncome;
          }
       });
-
    },
    getAddExpenses: function() {
       let addExpenses = additionalExpensesItem.value.split(', ');
-      
       addExpenses.forEach(function(item) {
          item =item.trim();
          if (item !== '') {
@@ -227,7 +222,6 @@ let appData = {
       incomeAdd.addEventListener('click', appData.addIncomeBlock);
       periodSelect.addEventListener('input', appData.getPeriodSelect);
    }
-   
 };
 appData.getInint();
 start.addEventListener('click', appData.start);
