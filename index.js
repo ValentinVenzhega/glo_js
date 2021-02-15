@@ -227,7 +227,3 @@ appData.getInint();
 start.addEventListener('click', appData.start);
 
 
-let arr = ['ябЛоКо', 'бАнАн', 'аПеЛьСиН'];
-console.log(arr);
-console.log(arr.map(n => `${n[0].toUpperCase()}${n.substring(1).toLowerCase()}`));
-
