@@ -3,7 +3,6 @@
 const start = document.getElementById('start'),
    incomeAdd = document.getElementsByTagName('button')[0],
    expensesAdd = document.getElementsByTagName('button')[1],
-   depositCheck = document.querySelector('#deposit-check'),
    additionalIncomeItem = document.querySelectorAll('.additional_income-item'),
    budgetMonthValue = document.getElementsByClassName('budget_month-value')[0],
    budgetDayValue = document.getElementsByClassName('budget_day-value')[0],
@@ -33,6 +32,8 @@ let money,
    incomeItems = document.querySelectorAll('.income-items'),
    inputText = document.querySelectorAll('input[placeholder="Наименование"]'),
    inputNumber = document.querySelectorAll('input[placeholder="Сумма"]'),
+   btnPlus = document.querySelectorAll('.btn_plus'),
+   depositCheck = document.querySelector('#deposit-check'),
    isNumber = function(n){
    return !isNaN(parseFloat(n)) && isFinite(n);
    };
@@ -108,7 +109,7 @@ let appData = {
       incomeItems[0].parentNode.insertBefore(cloneIncomeItem, incomeAdd);
       let i = cloneIncomeItem.querySelectorAll('input');
       console.log(this); // кнопка
-      i.forEach(function(item) {
+      i.forEach(item => {
          item.value = '';
          appData.getRegNumber(item);
          appData.getRegString(item);
@@ -196,7 +197,7 @@ let appData = {
    },
    getStart: function() {
       start.disabled = true;
-      salaryAmount.addEventListener('input', function() {
+      salaryAmount.addEventListener('input',() => {
          if (salaryAmount.value !== '') {
             start.disabled = false;
          } else {
@@ -205,17 +206,19 @@ let appData = {
       });
    },
    getRegString: function() {
-      inputText.forEach(function(item) {
-         item.addEventListener('input', function() {
-            this.value = this.value.replace(/[^А-Яа-я,._ ]/,'');
+      inputText.forEach(item => {
+         item.addEventListener('input', (e) => {
+            const target = e.target;
+            target.value = target.value.replace(/[^А-Яа-я,._ ]/,'');
          });
       });
       inputText = document.querySelectorAll('input[placeholder="Наименование"]');
    },
    getRegNumber: function() {
-      inputNumber.forEach(function(item) {
-         item.addEventListener('input', function() {
-            this.value = this.value.replace(/[^\d|,|.]+/g, "");
+      inputNumber.forEach(item => {
+         item.addEventListener('input', (e) => {
+            const target = e.target;
+            target.value = target.value.replace(/[^\d|,|.]+/g, "");
          });
       });
       inputNumber = document.querySelectorAll('input[placeholder="Сумма"]');
@@ -231,34 +234,47 @@ let appData = {
    getCalc: function() {
       start.style.display = 'none';
       cancel.style.display = 'block';
-      inputData.forEach(function(item){
-         item.disabled = true;
-      });
+      const inputData = data.querySelectorAll('input[type="text"]');
+      inputData.forEach(item => item.disabled = true);
+      btnPlus.forEach(item => item.disabled = true);
+      depositCheck.disabled = true;
+      start.disabled = true;
    },
    getReset: function() {
+      const incomItems = data.querySelectorAll('.income-items'),
+         expensesItems = document.querySelectorAll('.expenses-items'),
+         inputData = data.querySelectorAll('input[type="text"]');
       start.style.display = 'block';
       cancel.style.display = 'none';
-      input.forEach(function(item){
-         item.value = '';
+      input.forEach(item => item.value = '');
+      inputData.forEach((item) =>item.disabled = false);
+      incomItems.forEach((item, i) => {
+         if ( item > 1 || i !== 0) {
+            item.remove();
+            incomeAdd.style.display = 'block';
+         } 
       });
-      inputData.forEach(function(item){
-         item.disabled = false;
+      expensesItems.forEach((item, i) => {
+         if ( item > 1 || i !== 0) {
+            item.remove();
+            expensesAdd.style.display = 'block';
+         } 
       });
+      btnPlus.forEach(item => item.disabled = false);
+      depositCheck.disabled = false;
       periodSelect.value = '1';
       periodAmount.textContent = '1';
    }
 };
 
 appData.getInint();
-start.addEventListener('click', function() {
+start.addEventListener('click', () => {
    appData.start();
    appData.getCalc();
    
 });
 
-cancel.addEventListener('click', function() {
-   appData.getReset();
-});
+cancel.addEventListener('click', appData.getReset);
 
 
 
