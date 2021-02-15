@@ -25,15 +25,15 @@ const start = document.getElementById('start'),
    data = document.querySelector('.data'),
    cancel = document.querySelector('#cancel'),
    inputData = data.querySelectorAll('input[type="text"]'),
-   input = document.querySelectorAll('input[type="text"]');
+   input = document.querySelectorAll('input[type="text"]'),
+   btnPlus = document.querySelectorAll('.btn_plus'),
+   depositCheck = document.querySelector('#deposit-check');
 
 let money,
    expensesItems = document.querySelectorAll('.expenses-items'),
    incomeItems = document.querySelectorAll('.income-items'),
    inputText = document.querySelectorAll('input[placeholder="Наименование"]'),
    inputNumber = document.querySelectorAll('input[placeholder="Сумма"]'),
-   btnPlus = document.querySelectorAll('.btn_plus'),
-   depositCheck = document.querySelector('#deposit-check'),
    isNumber = function(n){
    return !isNaN(parseFloat(n)) && isFinite(n);
    };
@@ -61,7 +61,6 @@ let appData = {
       this.getAddIncome();
       this.getBudget();
       this.showResult();
-
    },
    showResult: function() {
       budgetMonthValue.value = this.budgetMonth;
