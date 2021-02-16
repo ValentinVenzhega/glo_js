@@ -250,7 +250,7 @@ let appData = {
       });
       inputData.forEach((item) =>item.disabled = false);
 
-      const a = function resetCloneItems(elem, btn) {
+      const resetItems = function resetCloneItems(elem, btn) {
          elem.forEach((item, i) => {
             if ( item > 1 || i !== 0) {
                item.remove();
@@ -258,8 +258,8 @@ let appData = {
             } 
          });
       };
-      a(incomItems, incomeAdd);
-      a(expensesItems, expensesAdd);
+      resetItems(incomItems, incomeAdd);
+      resetItems(expensesItems, expensesAdd);
       
       btnPlus.forEach(item => item.disabled = false);
       depositCheck.disabled = false;
