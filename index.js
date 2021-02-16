@@ -257,9 +257,7 @@ let appData = {
       depositCheck.disabled = false;
       periodSelect.value = 1;
       periodAmount.textContent = periodSelect.value;
-      appData.resetObj();
-   },
-   resetObj: function() {
+      
       this.income = {};
       this.incomeMonth = 0;
       this.addIncome = [];
@@ -273,20 +271,17 @@ let appData = {
       this.budgetMonth = 0;
       this.expensesMonth = 0;
    },
-   init() {
+
+   init: function () {
       this.regNumber();
       this.regString();
       this.getStart();
-      expensesAdd.addEventListener('click', () => this.addExpensesBlock());
-      incomeAdd.addEventListener('click', () => this.addIncomeBlock());
+      expensesAdd.addEventListener('click', this.addExpensesBlock.bind(appData));
+      incomeAdd.addEventListener('click', this.addIncomeBlock.bind(appData));
       periodSelect.addEventListener('input', this.getPeriodSelect);
    },
 };
 
 appData.init();
 start.addEventListener('click', () => appData.start());
-cancel.addEventListener('click', appData.reset);
-
-
-
-
+cancel.addEventListener('click', () => appData.reset());
