@@ -220,14 +220,6 @@ let appData = {
       });
       inputNumber = document.querySelectorAll('input[placeholder="Сумма"]');
    },
-   inint() {
-      this.regNumber();
-      this.regString();
-      this.getStart();
-      expensesAdd.addEventListener('click', () => this.addExpensesBlock());
-      incomeAdd.addEventListener('click', () => this.addIncomeBlock());
-      periodSelect.addEventListener('input', this.getPeriodSelect);
-   },
    elemState: function() {
       start.style.display = 'none';
       cancel.style.display = 'block';
@@ -265,10 +257,33 @@ let appData = {
       depositCheck.disabled = false;
       periodSelect.value = 1;
       periodAmount.textContent = periodSelect.value;
-   }
+      appData.resetObj();
+   },
+   resetObj: function() {
+      this.income = {};
+      this.incomeMonth = 0;
+      this.addIncome = [];
+      this.expenses = {};
+      this.addExpenses = [];
+      this.deposit = false;
+      this.procentDeposit = 0;
+      this.moneyDeposit = 0;
+      this.budget =0;
+      this.budgetDay = 0;
+      this.budgetMonth = 0;
+      this.expensesMonth = 0;
+   },
+   init() {
+      this.regNumber();
+      this.regString();
+      this.getStart();
+      expensesAdd.addEventListener('click', () => this.addExpensesBlock());
+      incomeAdd.addEventListener('click', () => this.addIncomeBlock());
+      periodSelect.addEventListener('input', this.getPeriodSelect);
+   },
 };
 
-appData.inint();
+appData.init();
 start.addEventListener('click', () => appData.start());
 cancel.addEventListener('click', appData.reset);
 
