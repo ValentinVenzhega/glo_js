@@ -25,7 +25,7 @@ const start = document.getElementById('start'),
    data = document.querySelector('.data'),
    cancel = document.querySelector('#cancel'),
    inputData = data.querySelectorAll('input[type="text"]'),
-   input = document.querySelectorAll('input[type="text"]'),
+   inputs = document.querySelectorAll('input'),
    btnPlus = document.querySelectorAll('.btn_plus'),
    depositCheck = document.querySelector('#deposit-check');
 
@@ -61,6 +61,7 @@ let appData = {
       this.getAddIncome();
       this.getBudget();
       this.showResult();
+      this.elemState();
    },
    showResult: function() {
       budgetMonthValue.value = this.budgetMonth;
@@ -81,17 +82,16 @@ let appData = {
       let cloneExpensesItem = expensesItems[0].cloneNode(true); // div
       expensesItems[0].parentNode.insertBefore(cloneExpensesItem, expensesAdd);// вставляем div перед кнопкой
       let i = cloneExpensesItem.querySelectorAll('input');
-      console.log(this); // кнопка
       i.forEach(item => {   // делаем перебор инпутов в диве
          item.value = '';
-         appData.getRegNumber(item);
-         appData.getRegString(item);
+         this.regNumber(item);
+         this.regString(item);
          
       });
       // получаем дивы с инпутами
       expensesItems = document.querySelectorAll('.expenses-items'); // получаем все элементы
       if(expensesItems.length === 3) {
-         this.style.display = 'none';
+         expensesAdd.style.display = 'none';
       }
    },
    getExpenses: function() {
@@ -107,15 +107,14 @@ let appData = {
       let cloneIncomeItem = incomeItems[0].cloneNode(true);
       incomeItems[0].parentNode.insertBefore(cloneIncomeItem, incomeAdd);
       let i = cloneIncomeItem.querySelectorAll('input');
-      console.log(this); // кнопка
       i.forEach(item => {
          item.value = '';
-         appData.getRegNumber(item);
-         appData.getRegString(item);
+         this.regNumber(item);
+         this.regString(item);
       });
       incomeItems = document.querySelectorAll('.income-items');
       if(incomeItems.length === 3) {
-         this.style.display = 'none';
+         incomeAdd.style.display = 'none';
       }
    },
    getIncome: function() {
@@ -135,7 +134,6 @@ let appData = {
             this.addExpenses.push(item);
             this.addExpenses = this.addExpenses.map(n => `${n[0].toUpperCase()}${n.substring(1).toLowerCase()}`);
          }
-         
       });
    },
    getAddIncome: function() {
@@ -148,12 +146,12 @@ let appData = {
       });
    },
    getExpensesMonth: function() {
-      for(let key in appData.expenses) {
+      for(let key in this.expenses) {
          this.expensesMonth += this.expenses[key];
       }
    },
    getIncomeMonth: function() {
-      for(let key in appData.income) {
+      for(let key in this.income) {
          this.incomeMonth += this.income[key];
       }
    },
@@ -204,7 +202,7 @@ let appData = {
          }
       });
    },
-   getRegString: function() {
+   regString: function() {
       inputText.forEach(item => {
          item.addEventListener('input', (e) => {
             const target = e.target;
@@ -213,7 +211,7 @@ let appData = {
       });
       inputText = document.querySelectorAll('input[placeholder="Наименование"]');
    },
-   getRegNumber: function() {
+   regNumber: function() {
       inputNumber.forEach(item => {
          item.addEventListener('input', (e) => {
             const target = e.target;
@@ -222,15 +220,15 @@ let appData = {
       });
       inputNumber = document.querySelectorAll('input[placeholder="Сумма"]');
    },
-   getInint() {
-      this.getRegNumber();
-      this.getRegString();
+   inint() {
+      this.regNumber();
+      this.regString();
       this.getStart();
-      expensesAdd.addEventListener('click', this.addExpensesBlock);
-      incomeAdd.addEventListener('click', this.addIncomeBlock);
+      expensesAdd.addEventListener('click', () => this.addExpensesBlock());
+      incomeAdd.addEventListener('click', () => this.addIncomeBlock());
       periodSelect.addEventListener('input', this.getPeriodSelect);
    },
-   getCalc: function() {
+   elemState: function() {
       start.style.display = 'none';
       cancel.style.display = 'block';
       const inputData = data.querySelectorAll('input[type="text"]');
@@ -239,15 +237,31 @@ let appData = {
       depositCheck.disabled = true;
       start.disabled = true;
    },
-   getReset: function() {
+   reset: function() {
       const incomItems = data.querySelectorAll('.income-items'),
          expensesItems = document.querySelectorAll('.expenses-items'),
-         inputData = data.querySelectorAll('input[type="text"]');
+         inputData = data.querySelectorAll('input[type="text"]'),
+         inputs = document.querySelectorAll('input');
       start.style.display = 'block';
       cancel.style.display = 'none';
-      input.forEach(item => item.value = '');
+      inputs.forEach(item => {
+         item.value = '';
+         item.type === 'checkbox' ? item.checked = false : '';
+      });
       inputData.forEach((item) =>item.disabled = false);
-      incomItems.forEach((item, i) => {
+
+      // function resetCloneItems(elem, btn) {
+      //    elem.forEach((item, i) => {
+      //       if ( item > 1 || i !== 0) {
+      //          item.remove();
+      //          btn.style.display = 'block';
+      //       } 
+      //    });
+      // resetCloneItems(incomItems, incomeAdd);
+      // resetCloneItems(expensesItems, expensesAdd);
+
+      // }
+      incomeItems.forEach((item, i) => {
          if ( item > 1 || i !== 0) {
             item.remove();
             incomeAdd.style.display = 'block';
@@ -261,27 +275,14 @@ let appData = {
       });
       btnPlus.forEach(item => item.disabled = false);
       depositCheck.disabled = false;
-      periodSelect.value = '1';
-      periodAmount.textContent = '1';
+      periodSelect.value = 1;
+      periodAmount.textContent = periodSelect.value;
    }
 };
 
-appData.getInint();
-start.addEventListener('click', () => {
-   appData.start();
-   appData.getCalc();
-   
-});
-
-cancel.addEventListener('click', appData.getReset);
-
-
-
-
-
-
-
-
+appData.inint();
+start.addEventListener('click', () => appData.start());
+cancel.addEventListener('click', appData.reset);
 
 
 
