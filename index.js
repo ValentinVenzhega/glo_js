@@ -250,7 +250,7 @@ let appData = {
       });
       inputData.forEach((item) =>item.disabled = false);
 
-      const resetItems = function resetCloneItems(elem, btn) {
+      const resetItems = function(elem, btn) {
          elem.forEach((item, i) => {
             if ( item > 1 || i !== 0) {
                item.remove();
