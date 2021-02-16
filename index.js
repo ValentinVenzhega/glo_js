@@ -276,8 +276,8 @@ let appData = {
       this.regNumber();
       this.regString();
       this.getStart();
-      expensesAdd.addEventListener('click', this.addExpensesBlock.bind(appData));
-      incomeAdd.addEventListener('click', this.addIncomeBlock.bind(appData));
+      expensesAdd.addEventListener('click', this.addExpensesBlock.bind(this));
+      incomeAdd.addEventListener('click', this.addIncomeBlock.bind(this));
       periodSelect.addEventListener('input', this.getPeriodSelect);
    },
 };
