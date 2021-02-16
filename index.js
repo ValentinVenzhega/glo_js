@@ -273,7 +273,7 @@ let appData = {
       this.budgetMonth = 0;
       this.expensesMonth = 0;
    },
-   init() {
+   init: function () {
       this.regNumber();
       this.regString();
       this.getStart();
