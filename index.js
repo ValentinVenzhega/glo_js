@@ -257,9 +257,8 @@ let appData = {
       depositCheck.disabled = false;
       periodSelect.value = 1;
       periodAmount.textContent = periodSelect.value;
-      appData.resetObj();
-   },
-   resetObj: function() {
+      console.log(this);
+      
       this.income = {};
       this.incomeMonth = 0;
       this.addIncome = [];
@@ -273,6 +272,7 @@ let appData = {
       this.budgetMonth = 0;
       this.expensesMonth = 0;
    },
+
    init: function () {
       this.regNumber();
       this.regString();
@@ -285,7 +285,7 @@ let appData = {
 
 appData.init();
 start.addEventListener('click', () => appData.start());
-cancel.addEventListener('click', appData.reset);
+cancel.addEventListener('click', () => appData.reset());
 
 
 
