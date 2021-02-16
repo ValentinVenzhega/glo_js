@@ -288,7 +288,5 @@ AppData.prototype.eventsListeners = function() {
    cancel.addEventListener('click', this.reset.bind(this));
 };
 
-
 const app = new AppData();
-console.log(app);
 app.eventsListeners();
