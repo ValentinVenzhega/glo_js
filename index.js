@@ -250,29 +250,17 @@ let appData = {
       });
       inputData.forEach((item) =>item.disabled = false);
 
-      // function resetCloneItems(elem, btn) {
-      //    elem.forEach((item, i) => {
-      //       if ( item > 1 || i !== 0) {
-      //          item.remove();
-      //          btn.style.display = 'block';
-      //       } 
-      //    });
-      // resetCloneItems(incomItems, incomeAdd);
-      // resetCloneItems(expensesItems, expensesAdd);
-
-      // }
-      incomeItems.forEach((item, i) => {
-         if ( item > 1 || i !== 0) {
-            item.remove();
-            incomeAdd.style.display = 'block';
-         } 
-      });
-      expensesItems.forEach((item, i) => {
-         if ( item > 1 || i !== 0) {
-            item.remove();
-            expensesAdd.style.display = 'block';
-         } 
-      });
+      const a = function resetCloneItems(elem, btn) {
+         elem.forEach((item, i) => {
+            if ( item > 1 || i !== 0) {
+               item.remove();
+               btn.style.display = 'block';
+            } 
+         });
+      };
+      a(incomItems, incomeAdd);
+      a(expensesItems, expensesAdd);
+      
       btnPlus.forEach(item => item.disabled = false);
       depositCheck.disabled = false;
       periodSelect.value = 1;
