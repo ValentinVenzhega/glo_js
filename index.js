@@ -280,6 +280,9 @@ class AppData {
       if (this.deposit) {
          this.percentDeposit = depositPercent.value;
          this.moneyDeposit = depositAmount.value;
+      } else {
+         this.percentDeposit = 0;
+         this.moneyDeposit = 0;
       }
    }
    changePercent() {
