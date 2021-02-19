@@ -45,7 +45,7 @@ class AppData {
       this.expenses = {};
       this.addExpenses = [];
       this.deposit = false;
-      this.procentDeposit = 0;
+      this.percentDeposit = 0;
       this.moneyDeposit = 0;
       this.budget =0;
       this.budgetDay = 0;
@@ -155,7 +155,6 @@ class AppData {
    }
    getBudget() {
       const monthDeposit = this.moneyDeposit * (this.percentDeposit / 100);
-      console.log(monthDeposit);
       this.budgetMonth = this.budget + this.incomeMonth - this.expensesMonth + monthDeposit;
       this.budgetDay = Math.floor(this.budgetMonth / 30);
    } 
@@ -177,12 +176,12 @@ class AppData {
       depositPercent.addEventListener('input', (e)=> {
          const target = e.target;
          target.value = target.value.replace (/[^\d|,|.]+/g, '');
-            if(target.value >= 0 && target.value <= 100 && target.value !== '') {
-               depositPercent.value = depositPercent.value;
-               start.disabled = false;
-            } else {
+            if(target.value < 0 || target.value > 100 || target.value === '') {
+               this.percentDeposit = depositPercent.value = '';
                start.disabled = true;
                alert ('Введите корректное значение в поле проценты');
+            } else {
+               depositPercent.value = depositPercent.value;
             }
          });
    }
@@ -244,7 +243,6 @@ class AppData {
       periodAmount.textContent = periodSelect.value;
       depositBank.style.display = 'none';
       depositAmount.style.display = 'none';
-      depositPercent.style.display = 'none';
       depositCheck.disabled = false;
       depositBank.disabled = false;
       depositAmount.disabled = false;
@@ -272,11 +270,9 @@ class AppData {
    }
    getInfoDeposit() {
       if (this.deposit) {
-         this.percentDeposit = depositPercent.value;
-         this.moneyDeposit = depositAmount.value;
-      } else {
-         this.percentDeposit = 0;
-         this.moneyDeposit = 0;
+         this.percentDeposit = +depositPercent.value;
+         console.log(this.percentDeposit);
+         this.moneyDeposit = +depositAmount.value;
       }
    }
    changePercent() {
@@ -284,7 +280,6 @@ class AppData {
       if (valueSelect === 'other') {
          depositPercent.style.display = 'inline-block';
          depositPercent.value = '';
-         start.disabled = true;
       } else {
          depositPercent.value = valueSelect;
          depositPercent.style.display = 'none';
