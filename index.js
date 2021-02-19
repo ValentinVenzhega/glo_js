@@ -246,12 +246,14 @@ class AppData {
       resetItems(expensesItems, expensesAdd);
       
       btnPlus.forEach(item => item.disabled = false);
-      depositCheck.disabled = false;
       periodSelect.value = 1;
       periodAmount.textContent = periodSelect.value;
       depositBank.style.display = 'none';
       depositAmount.style.display = 'none';
       depositPercent.style.display = 'none';
+      depositCheck.disabled = false;
+      depositBank.disabled = false;
+      depositAmount.disabled = false;
       
       this.income = {};
       this.incomeMonth = 0;
