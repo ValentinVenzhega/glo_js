@@ -277,6 +277,7 @@ class AppData {
             if(target.value < 0 || target.value > 100) {
                target.value = '';
                alert ('Введите корректное значение в поле проценты');
+               start.disabled = true;
             } else {
                if (salaryAmount.value !== '' && depositPercent.value !== '' ) {
                   
